@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
         // Enable the line renderer and set it's first position to the end of the gun
         //m_GunLine.enabled = true;
-        m_GunLine.SetPosition(0, gunpoint.position);
+        //m_GunLine.SetPosition(0, gunpoint.position);
 
         // Set the shoot ray so that it starts at the end of the gun and points forward from the barrel
         m_ShootRay.origin = gunpoint.position;
@@ -131,7 +131,8 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(m_ShootRay, out m_ShootHit, firingRange)) {
             // Hit something, deal damage
             Debug.Log(m_ShootHit.transform.name + "-" + m_ShootHit.transform.position);
-            //Debug.DrawLine(gunpoint.position, m_ShootHit.transform.position, Color.red, 5.0f);
+
+            // Not working
             m_HitParticles.transform.position = m_ShootHit.transform.position;
             m_HitParticles.Play(true);
         } else {

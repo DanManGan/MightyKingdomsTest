@@ -137,7 +137,7 @@ MonoBehaviour:
   runSpeed: 6
   firingRange: 100
   damage: 20
-  timeBetweenBullets: 0.15
+  timeBetweenBullets: 0.25
   m_HitParticles: {fileID: 7118848616649957460, guid: d19e72382d9339446aa12178d3736bc6,
     type: 3}
   m_GunParticles: {fileID: 1768066432800149941}
@@ -5900,7 +5900,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2203773368e4340d98c114f55c2dd7fd, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
