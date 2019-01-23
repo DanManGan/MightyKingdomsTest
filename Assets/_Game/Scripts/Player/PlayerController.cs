@@ -12,10 +12,11 @@ public class PlayerController : MonoBehaviour
     public float firingRange = 50f;             // The range of which the player can shoot
     public int damage = 20;                     // The damage for each shot
     public float timeBetweenBullets = 0.15f;    // The time between each shot
-    public ParticleSystem m_GunParticles;      // Reference to the particle system
-    public LineRenderer m_GunLine;             // Reference to the line renderer
-    public AudioSource m_GunAudio;             // Reference to the audio source
-    public Light m_GunLight;                   // Reference to the light component
+    public ParticleSystem m_HitParticles;       // Reference to the particle system for bullet hits
+    public ParticleSystem m_GunParticles;       // Reference to the particle system for muzzle flash
+    public LineRenderer m_GunLine;              // Reference to the line renderer
+    public AudioSource m_GunAudio;              // Reference to the audio source
+    public Light m_GunLight;                    // Reference to the light component
 
     private float m_Timer;                      // A timer to detmine when to fire
     private Ray m_ShootRay;                     // A ray from the gun end forwards
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Anim = GetComponent<Animator>();
         m_GunParticles.Stop();
+        m_HitParticles.Stop();
         m_GunLight.enabled = false;
         m_GunLine.enabled = false;
     }
@@ -118,18 +120,20 @@ public class PlayerController : MonoBehaviour
         m_GunParticles.Play();
 
         // Enable the line renderer and set it's first position to the end of the gun
-        m_GunLine.enabled = true;
-        m_GunLine.SetPosition(0, transform.position);
+        //m_GunLine.enabled = true;
+        m_GunLine.SetPosition(0, gunpoint.position);
 
-        // Set the shoot ray so that it starts at the end of the fun and points forward from the barrel
-        m_ShootRay.origin = transform.position;
-        m_ShootRay.direction = transform.forward;
-                
+        // Set the shoot ray so that it starts at the end of the gun and points forward from the barrel
+        m_ShootRay.origin = gunpoint.position;
+        m_ShootRay.direction = m_ShootDir;
+
         // Perform the raycast
         if (Physics.Raycast(m_ShootRay, out m_ShootHit, firingRange)) {
             // Hit something, deal damage
-            Debug.Log(m_ShootHit.transform.name);
-            Debug.DrawLine(gunpoint.position, m_ShootHit.transform.position);
+            Debug.Log(m_ShootHit.transform.name + "-" + m_ShootHit.transform.position);
+            //Debug.DrawLine(gunpoint.position, m_ShootHit.transform.position, Color.red, 5.0f);
+            m_HitParticles.transform.position = m_ShootHit.transform.position;
+            m_HitParticles.Play(true);
         } else {
             m_GunLine.SetPosition(1, m_ShootRay.origin + m_ShootRay.direction * firingRange);
         }

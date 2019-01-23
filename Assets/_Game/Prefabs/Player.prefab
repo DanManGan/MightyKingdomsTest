@@ -138,6 +138,8 @@ MonoBehaviour:
   firingRange: 100
   damage: 20
   timeBetweenBullets: 0.15
+  m_HitParticles: {fileID: 7118848616649957460, guid: d19e72382d9339446aa12178d3736bc6,
+    type: 3}
   m_GunParticles: {fileID: 1768066432800149941}
   m_GunLine: {fileID: 1332527457871468487}
   m_GunAudio: {fileID: 4757877403284544830}
@@ -1013,8 +1015,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9154133384051309263}
-  m_LocalRotation: {x: -0.048865423, y: -0.04720241, z: 0.99585015, w: -0.06055243}
-  m_LocalPosition: {x: -1.499, y: -0.181, z: 0.172}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.477, y: -0.205, z: 0.197}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 901662266}
