@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
 
         // Set the shoot ray so that it starts at the end of the gun and points forward from the barrel
         m_ShootRay.origin = gunpoint.position;
-        m_ShootRay.direction = m_ShootDir;
+        m_ShootRay.direction = m_ShootDir.normalized;
 
         // Perform the raycast
         if (Physics.Raycast(m_ShootRay, out m_ShootHit, firingRange)) {
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
 
             // Not working
             m_HitParticles.transform.position = m_ShootHit.transform.position;
-            m_HitParticles.Play(true);
+            m_HitParticles.Play();
         } else {
             m_GunLine.SetPosition(1, m_ShootRay.origin + m_ShootRay.direction * firingRange);
         }
